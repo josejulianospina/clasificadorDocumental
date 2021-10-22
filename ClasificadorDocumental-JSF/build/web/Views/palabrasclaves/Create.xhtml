@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PalabrasclavesCreateDlg" widgetVar="PalabrasclavesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePalabrasclavesTitle}">
+            <h:form id="PalabrasclavesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{palabrasclavesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePalabrasclavesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{palabrasclavesController.selected.id}" title="#{bundle.CreatePalabrasclavesTitle_id}" required="true" requiredMessage="#{bundle.CreatePalabrasclavesRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreatePalabrasclavesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{palabrasclavesController.selected.nombre}" title="#{bundle.CreatePalabrasclavesTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePalabrasclavesRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreatePalabrasclavesLabel_tipoDocumentoid}" for="tipoDocumentoid" />
+                        <p:selectOneMenu id="tipoDocumentoid" value="#{palabrasclavesController.selected.tipoDocumentoid}" required="true" requiredMessage="#{bundle.EditPalabrasclavesRequiredMessage_tipoDocumentoid}">
+                            <f:selectItems value="#{tipodocumentoController.itemsAvailableSelectOne}"
+                                           var="tipoDocumentoidItem"
+                                           itemValue="#{tipoDocumentoidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{palabrasclavesController.create}" value="#{bundle.Save}" update="display,:PalabrasclavesListForm:datalist,:growl" oncomplete="handleSubmit(args,'PalabrasclavesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PalabrasclavesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

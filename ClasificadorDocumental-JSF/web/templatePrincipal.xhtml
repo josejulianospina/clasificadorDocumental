@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title><ui:insert name="title" >Clasificador Documental</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="primeflex.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" life="5000" showDetail="true" />
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="100">
+                <h:form> 
+                    <p:commandLink action="#" >
+                        <h:outputText class="fa fa-sign-out btnCerrarS"/>
+                    </p:commandLink>
+                </h:form>
+                <center><h1>Bienvenido al Clasificador Documental</h1></center>
+            </p:layoutUnit>
+           <p:layoutUnit position="west" size="250" header="Menú" collapsible="true" >
+                <h:form>
+                    <p:growl>
+                        <p:autoUpdate />
+                    </p:growl>
+                    <p:panelMenu style="width:300px">
+                        <p:submenu label="DOCUMENTOS ESCANEADOS">
+                            <p:menuitem value="Clasificar" outcome="/Views/tipodocumento/List" icon="fa fa-heartbeat" />
+                            <p:menuitem value="Configuración" outcome="/Views/palabrasclaves/List" icon="pi pi-fw pi-cog" />
+                        </p:submenu>
+                        <p:submenu label="USUARIOS">
+                            <p:menuitem value="Nuevo usuario" outcome="/Views/usuario/List" icon="fa fa-user" />
+                        </p:submenu>
+                        <p:separator />
+                    </p:panelMenu>
+                </h:form> 
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <ui:insert name="body" /> 
+            </p:layoutUnit>
+            <p:layoutUnit position="south" size="80">
+                <center><h3>Derechos reservados 2021</h3></center>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+         
+</html>
+
